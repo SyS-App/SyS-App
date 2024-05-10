@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import { Head } from "./head";
@@ -18,11 +19,11 @@ export default function DefaultLayout({
 				<Link
 					isExternal
 					className="flex items-center gap-1 text-current"
-					href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
-					title="nextui.org homepage"
+					href="https://sysrunkang.sysapp.org/"
+					title="Project Maintainer & Owner"
 				>
-					<span className="text-default-600">Powered by</span>
-					<p className="text-primary">Vercel</p>
+					<span className="text-default-600">&copy; 2023-2024</span>
+					<p className="text-primary">Runkang Chen</p>
 				</Link>
 			</footer>
 		</div>

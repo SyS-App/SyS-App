@@ -12,28 +12,28 @@ export default function IndexPage() {
 		<DefaultLayout>
 			<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 				<div className="inline-block max-w-lg text-center justify-center">
-					<h1 className={title()}>Make&nbsp;</h1>
-					<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
+					<h1 className={title({ color: "violet" })}>Open-source&nbsp;</h1>
+					<h1 className={title()}>and&nbsp;</h1>
+					<h1 className={title({ color: "violet" })}>Free&nbsp;</h1>
 					<br />
 					<h1 className={title()}>
-						websites regardless of your design experience.
+						projects, softwares and libraries.
 					</h1>
 					<h4 className={subtitle({ class: "mt-4" })}>
-						Beautiful, fast and modern React UI library.
+						Explore all SyS App projects. Open source and free.
 					</h4>
 				</div>
 
 				<div className="flex gap-3">
 					<Link
-						isExternal
-						href={siteConfig.links.docs}
+						href="#explore"
 						className={buttonStyles({
 							color: "primary",
 							radius: "full",
 							variant: "shadow",
 						})}
 					>
-						Documentation
+						Explore
 					</Link>
 					<Link
 						isExternal
@@ -45,10 +45,10 @@ export default function IndexPage() {
 					</Link>
 				</div>
 
-				<div className="mt-8">
+				<div className="mt-8" id="coming_soon">
 					<Snippet hideSymbol hideCopyButton variant="bordered">
 						<span>
-							Get started by editing <Code color="primary">pages/index.tsx</Code>
+							Working in progress ...
 						</span>
 					</Snippet>
 				</div>
