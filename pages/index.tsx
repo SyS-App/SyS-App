@@ -12,15 +12,11 @@ export default function IndexPage() {
 		<DefaultLayout>
 			<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 				<div className="inline-block max-w-lg text-center justify-center">
-					<h1 className={title({ color: "violet" })}>Open-source&nbsp;</h1>
-					<h1 className={title()}>and&nbsp;</h1>
 					<h1 className={title({ color: "violet" })}>Free&nbsp;</h1>
-					<br />
-					<h1 className={title()}>
-						projects, softwares and libraries.
-					</h1>
+					<h1 className={title()}>and&nbsp;</h1>
+					<h1 className={title({ color: "violet" })}>Open-source&nbsp;</h1>
 					<h4 className={subtitle({ class: "mt-4" })}>
-						Explore all SyS App projects. Open source and free.
+						Projects, created and maintained Since Age 14&nbsp;
 					</h4>
 				</div>
 
@@ -45,13 +41,6 @@ export default function IndexPage() {
 					</Link>
 				</div>
 
-				<div className="mt-8" id="coming_soon">
-					<Snippet hideSymbol hideCopyButton variant="bordered">
-						<span>
-							Working in progress ...
-						</span>
-					</Snippet>
-				</div>
 			</section>
 		</DefaultLayout>
 	);

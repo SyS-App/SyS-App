@@ -57,8 +57,6 @@ export const siteConfig = {
 	],
 	links: {
 		github: "https://github.com/SyS-App/SyS-App",
-		twitter: "https://twitter.com/",
-		docs: "https://docs.sysapp.org",
 		discord: "https://discord.gg/",
 	},
 };
