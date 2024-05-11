@@ -12,8 +12,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
-      - name: Update
+          node-version: 22
+      - name: Update npm
+        run: npm install npm@latest
+      - name: Update dependencies
         run: npm update --legacy-peer-deps
       - name: Create package-lock.json
         run: npm install --legacy-peer-deps
