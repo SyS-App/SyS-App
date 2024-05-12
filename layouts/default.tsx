@@ -28,14 +28,10 @@ export default function DefaultLayout({
 	useEffect(() => {
 		async function request_and_get_version() {
 			try {
-				const TOKEN = "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";
-				const headers = {
-					Authorization: `token ${TOKEN}`,
-				}
-				await axios.get("https://api.github.com/repos/SyS-App/SyS-App/releases/latest", { headers })
+				await axios.get("https://raw.githubusercontent.com/SyS-App/SyS-App/main/package.json")
 					.then(response => {
-						if (response.data.tag_name) {
-							const TagName = response.data.tag_name;
+						if (response.data.version) {
+							const TagName = response.data.version;
 							const cleanTagName = TagName.replace(/^v/, '');
 							
 							SetVersion(cleanTagName);
@@ -52,7 +48,7 @@ export default function DefaultLayout({
 			}
 		}
 
-		request_and_get_version()
+		request_and_get_version();
 	});
 
 	return (
