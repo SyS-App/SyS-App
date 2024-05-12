@@ -33,7 +33,7 @@ export default function DefaultLayout({
 						if (response.data.version) {
 							const TagName = response.data.version;
 							const cleanTagName = TagName.replace(/^v/, '');
-							
+
 							SetVersion(cleanTagName);
 						} else {
 							SetVersion("undefined");
@@ -109,21 +109,14 @@ export default function DefaultLayout({
 						}
 						</p>
 					</Link>
-					<Link
-						isExternal
-						href="https://github.com/SyS-App/SyS-App/releases/latest"
-						title="Website version."
-						id="version"
+					<Snippet
+						hideSymbol
+						hideCopyButton
 					>
-						<Snippet
-							hideSymbol
-							hideCopyButton
-						>
-							<span>
-								Version: {GetVersion}
-							</span>
-						</Snippet>
-					</Link>
+						<span>
+							Version: {GetVersion}
+						</span>
+					</Snippet>
 				</div>
 			</footer>
 		</div>
