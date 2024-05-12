@@ -7,6 +7,7 @@ import { TextConfig } from "@/config/text";
 import { ClassConfig } from "@/config/class";
 import { useEffect, useState } from "react";
 import { Divider, Snippet } from "@nextui-org/react";
+import axios from "axios";
 
 export default function DefaultLayout({
 	children,
@@ -19,6 +20,33 @@ export default function DefaultLayout({
 		const date = new Date();
 		const year = date.getFullYear();
 		SetCurrentYear(year);
+	})
+
+	const [GetVersion, SetVersion] = useState("");
+
+	useEffect(() => {
+		async function request_and_get_version() {
+			try {
+				const response = await axios.get("https://api.github.com/repos/SyS-App/SyS-App/releases/latest");
+
+				if (response.status === 200) {
+					if (response.data.tag_name) {
+						const TagName = response.data.tag_name;
+						const cleanTagName = TagName.replace(/^v/, '');
+						
+						SetVersion(cleanTagName);
+					} else {
+						SetVersion("undefined");
+					}
+				} else {
+					console.warn("Check version failed.")
+				}
+			} catch {
+				SetVersion("undefined");
+			}
+		}
+
+		request_and_get_version()
 	})
 
 	return (
@@ -41,15 +69,20 @@ export default function DefaultLayout({
 					children
 				}
 			</main>
-			<footer className="w-full py-3">
-				<div className="mt-8" id="coming_soon">
-					<Snippet hideSymbol hideCopyButton variant="bordered">
-						<span>
+			<footer className="w-full py-4">
+				<div className="mt-8 my-4" id="coming_soon">
+					<Snippet
+						hideSymbol
+						hideCopyButton
+						variant="bordered"
+						className="w-1/2"
+					>
+						<span className="text-center w-full">
 							Working in progress ...
 						</span>
 					</Snippet>
 				</div>
-				<div className="flex justify-center justify-items-center pb-4">
+				<div className="flex justify-around justify-items-center pb-4">
 					<Link
 						isExternal
 						className="flex items-center gap-1 text-xs"
@@ -74,6 +107,21 @@ export default function DefaultLayout({
 								.rc
 						}
 						</p>
+					</Link>
+					<Link
+						isExternal
+						href="https://github.com/SyS-App/SyS-App/releases/latest"
+						title="Website version."
+						id="version"
+					>
+						<Snippet
+							hideSymbol
+							hideCopyButton
+						>
+							<span>
+								Version: {GetVersion}
+							</span>
+						</Snippet>
 					</Link>
 				</div>
 			</footer>
