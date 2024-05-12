@@ -4,7 +4,7 @@ import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { DiscordIcon, GithubIcon, SearchIcon } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 
 export default function IndexPage() {
@@ -17,7 +17,7 @@ export default function IndexPage() {
 					<h1 className={title()}>and&nbsp;</h1>
 					<h1 className={title({ color: "violet" })}>Open-source&nbsp;</h1>
 					<h4 className={subtitle({ class: "mt-4" })}>
-						Projects, created and maintained Since Age 14&nbsp;
+						Projects, created and maintained Since <strong>Age 14</strong>&nbsp;
 					</h4>
 				</div>
 
@@ -30,15 +30,31 @@ export default function IndexPage() {
 							variant: "shadow",
 						})}
 					>
+						<SearchIcon size={20}/>
 						Explore
 					</Link>
 					<Link
 						isExternal
-						className={buttonStyles({ variant: "bordered", radius: "full" })}
+						className={buttonStyles({
+							color: "secondary",
+							variant: "bordered",
+							radius: "full"
+						})}
 						href={siteConfig.links.github}
 					>
 						<GithubIcon size={20} />
 						GitHub
+					</Link>
+					<Link
+						isExternal
+						className={buttonStyles({
+							variant: "bordered",
+							radius: "full"
+						})}
+						href={siteConfig.links.discord}
+					>
+						<DiscordIcon size={20} />
+						Discord
 					</Link>
 				</div>
 

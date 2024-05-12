@@ -15,5 +15,9 @@ export const TextConfig = {
                 project_maintainer: "Project Maintainer & Owner"
             }
         }
+    },
+
+    maintenace: {
+        working_in_progress: "Working in progress ..."
     }
 }

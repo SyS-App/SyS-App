@@ -14,40 +14,46 @@ export default function DefaultLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
 	const [GetCurrentYear, SetCurrentYear] = useState(Number);
 
 	useEffect(() => {
 		const date = new Date();
 		const year = date.getFullYear();
 		SetCurrentYear(year);
-	})
+	});
 
 	const [GetVersion, SetVersion] = useState("");
 
 	useEffect(() => {
 		async function request_and_get_version() {
 			try {
-				const response = await axios.get("https://api.github.com/repos/SyS-App/SyS-App/releases/latest");
-
-				if (response.status === 200) {
-					if (response.data.tag_name) {
-						const TagName = response.data.tag_name;
-						const cleanTagName = TagName.replace(/^v/, '');
-						
-						SetVersion(cleanTagName);
-					} else {
-						SetVersion("undefined");
-					}
-				} else {
-					console.warn("Check version failed.")
+				const TOKEN = "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";
+				const headers = {
+					Authorization: `token ${TOKEN}`,
 				}
-			} catch {
+				await axios.get("https://api.github.com/repos/SyS-App/SyS-App/releases/latest", { headers })
+					.then(response => {
+						if (response.data.tag_name) {
+							const TagName = response.data.tag_name;
+							const cleanTagName = TagName.replace(/^v/, '');
+							
+							SetVersion(cleanTagName);
+						} else {
+							SetVersion("undefined");
+						}
+					})
+					.catch(error => {
+						console.error("Check failed: ", error.response.request.status)
+						SetVersion("undefined");
+					})
+			} catch (Err) {
 				SetVersion("undefined");
 			}
 		}
 
 		request_and_get_version()
-	})
+	});
 
 	return (
 		<div className="relative flex flex-col h-screen">
@@ -70,14 +76,13 @@ export default function DefaultLayout({
 				}
 			</main>
 			<footer className="w-full py-4">
-				<div className="mt-8 my-4" id="coming_soon">
+				<div className="flex justify-center justify-items-center mt-8 my-4" id="coming_soon">
 					<Snippet
 						hideSymbol
 						hideCopyButton
 						variant="bordered"
-						className="w-1/2"
 					>
-						<span className="text-center">
+						<span>
 							Working in progress ...
 						</span>
 					</Snippet>

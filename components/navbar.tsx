@@ -1,8 +1,6 @@
 import {
 	Button,
-	Kbd,
 	Link,
-	Input,
 	Navbar as NextUINavbar,
 	NavbarContent,
 	NavbarMenu,
@@ -10,6 +8,12 @@ import {
 	NavbarBrand,
 	NavbarItem,
 	NavbarMenuItem,
+	useDisclosure,
+	Modal,
+	ModalContent,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
 } from "@nextui-org/react";
 
 import { link as linkStyles } from "@nextui-org/theme";
@@ -22,33 +26,15 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import {
 	GithubIcon,
 	DiscordIcon,
-	HeartFilledIcon,
 	SearchIcon,
 } from "@/components/icons";
 
 import { Logo } from "@/components/icons";
+import { TextConfig } from "@/config/text";
 
 export const Navbar = () => {
-	const searchInput = (
-		<Input
-			aria-label="Search"
-			classNames={{
-				inputWrapper: "bg-default-100",
-				input: "text-sm",
-			}}
-			endContent={
-				<Kbd className="hidden lg:inline-block" keys={["command"]}>
-					K
-				</Kbd>
-			}
-			labelPlacement="outside"
-			placeholder="Search..."
-			startContent={
-				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-			}
-			type="search"
-		/>
-	);
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
 
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky">
@@ -77,7 +63,7 @@ export const Navbar = () => {
 				</div>
 			</NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+			<NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Link isExternal href={siteConfig.links.github}>
 						<GithubIcon className="text-default-500" />
@@ -87,41 +73,62 @@ export const Navbar = () => {
 					</Link>
 					<ThemeSwitch />
 				</NavbarItem>
-				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
-						isExternal
-						as={Link}
+						onPress={onOpen}
 						className="text-sm font-normal text-default-600 bg-default-100"
-						href="#coming_soon"
-						startContent={<HeartFilledIcon className="text-danger" />}
+						href="#"
+						startContent={<SearchIcon />}
 						variant="flat"
 					>
-						Sponsor
+						Explore
 					</Button>
+					<Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+						<ModalContent>
+							{(onClose) => (
+								<>
+									<ModalHeader className="flex flex-col gap-1">
+										{
+											TextConfig.maintenace.working_in_progress
+										}
+									</ModalHeader>
+									<ModalBody>
+										<span className="text-xs">This function is currently not yet implemented.</span>
+										<span className="text-xs">It will be implemented starting from the next versions.</span>
+										<br />
+										<span className="text-xs">Thanks for the attention.</span>
+									</ModalBody>
+									<ModalFooter>
+										<Button color="danger" variant="light" onPress={onClose}>
+											Close
+										</Button>
+									</ModalFooter>
+								</>
+							)}
+						</ModalContent>
+					</Modal>
 				</NavbarItem>
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
+				<Link isExternal href={siteConfig.links.github}>
+					<GithubIcon className="text-default-500" />
+				</Link>
+				<ThemeSwitch />
 				<NavbarMenuToggle />
-      </NavbarContent>
+			</NavbarContent>
 
-      <NavbarMenu>
-				{searchInput}
+			<NavbarMenu>
 				<div className="mx-4 mt-2 flex flex-col gap-2">
-					{siteConfig.navMenuItems.map((item, index) => (
+					{/* {siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
 							<Link
 								color={
 									index === 2
 										? "primary"
 										: index === siteConfig.navMenuItems.length - 1
-										? "danger"
-										: "foreground"
+											? "danger"
+											: "foreground"
 								}
 								href="#"
 								size="lg"
@@ -129,7 +136,12 @@ export const Navbar = () => {
 								{item.label}
 							</Link>
 						</NavbarMenuItem>
-					))}
+					))} */}
+					<NavbarMenuItem className='my-6'>
+						<p>
+							{TextConfig.maintenace.working_in_progress}
+						</p>
+					</NavbarMenuItem>
 				</div>
 			</NavbarMenu>
 		</NextUINavbar>
