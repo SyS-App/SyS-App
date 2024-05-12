@@ -77,7 +77,7 @@ export default function DefaultLayout({
 						variant="bordered"
 						className="w-1/2"
 					>
-						<span className="text-center w-full">
+						<span className="text-center">
 							Working in progress ...
 						</span>
 					</Snippet>
