@@ -112,6 +112,7 @@ export default function DefaultLayout({
 					<Snippet
 						hideSymbol
 						hideCopyButton
+						title="Website version"
 					>
 						<span>
 							Version: {GetVersion}
