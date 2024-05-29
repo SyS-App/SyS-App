@@ -7,10 +7,9 @@ export const siteConfig = {
     {
       label: "Home",
       href: "/",
-    }
+    },
   ],
-  navMenuItems: [
-  ],
+  navMenuItems: [],
   links: {
     github: "https://github.com/SyS-App/",
     sponsor: "https://",
