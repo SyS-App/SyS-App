@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sysappp.org'),
+  metadataBase: new URL('https://sysapp.org'),
   title: {
     default: "SyS App",
     template: "%s - SyS App"
