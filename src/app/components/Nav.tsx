@@ -1,13 +1,11 @@
 import React from "react";
-import { Nav } from "@/config/default";
+import { Links, Nav } from "@/config/default";
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeComponent } from "@/components/theme-provider";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Ellipsis } from "lucide-react";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 
 const HomeLogo = () => {
@@ -30,7 +28,20 @@ const AllLinks = () => {
                     <DialogTitle>Links</DialogTitle>
                     <br />
                     <DialogDescription>
-                        ...
+                        <div>
+                            {
+                                Links.map((link, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <Link className={(buttonVariants({ variant: 'link', size: 'sm' }))} href={link.url} title={link.label}>
+                                                {link.label}
+                                            </Link>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <br />
                     </DialogDescription>
                 </DialogHeader>
 
@@ -48,7 +59,7 @@ const AllLinks = () => {
 export default function index() {
 
     return (
-        <header className="py-2 sticky top-0 w-full rounded-xl backdrop-blur-2xl">
+        <header className="z-10 py-2 sticky top-0 w-full rounded-xl backdrop-blur-2xl">
             <nav className="m-3 mx-4 flex justify-between items-center">
                 <div className="navleft flex items-center">
                     <div className="navbrand">

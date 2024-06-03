@@ -5,6 +5,7 @@ import "./util.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { AlertCore } from "./components/Alert";
 
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
@@ -38,7 +39,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <div id="recaptcha-container"></div>
           <main className="min-h-screen flex flex-col ">
+            <AlertCore />
             <Nav />
             <div className="flex-1">
               {children}
