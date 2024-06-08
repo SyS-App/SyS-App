@@ -9,7 +9,7 @@ export default function Footer() {
     return (
         <footer className="block p-4 relative left-0 right-0 bottom-0">
             {/* Footer contents */}
-            <div className="flex items-start justify-around flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4">
                     <h4 className="text-xl font-bold mb-3" id="projects">
                         Projects
