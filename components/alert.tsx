@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 // Import (Internal)
 import AlertData from "@/alert.json";
-import AlertProps from "@/types/alert";
+import { AlertProps } from "@/types/alert";
 
 function AlertCore() {
     const [alerts, setAlerts] = useState<AlertProps[]>(AlertData);
