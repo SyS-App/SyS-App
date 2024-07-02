@@ -1,5 +1,5 @@
 // SyS App default logos
-import LogoProps from "@/types/logo";
+import { LogoProps } from "@/types/logo";
 
 const Logo = ({ width, height }: LogoProps) => {
     return (
