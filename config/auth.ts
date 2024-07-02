@@ -1,14 +1,9 @@
 import NextAuth from "next-auth";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
-import Github from "next-auth/providers/github";
-import Google from "next-auth/providers/google";
+import authConfig from "@/config/auth.config";
 import { firestore } from "./firebase";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-    providers: [
-        Google,
-        Github
-    ],
     adapter: FirestoreAdapter(firestore),
     callbacks: {
         async signIn({ user, account, profile }) {
@@ -41,14 +36,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session({ session, user }) {
             session.user.id = user.id
             return session
-        },
+        }
     },
     session: {
-        strategy: 'database',
+        strategy: "database",
         maxAge: 2 * 24 * 60 * 60,
         updateAge: 24 * 60 * 60,
     },
-    debug: process.env.NODE_ENV !== 'production',
+    debug: process.env.NODE_ENV !== "production",
     logger: {
         error(code, ...message) {
             console.error(code, message)
@@ -59,5 +54,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         debug(code, ...message) {
             console.debug(code, message)
         }
-    }
+    },
+    ...authConfig
 })

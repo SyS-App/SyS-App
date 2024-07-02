@@ -16,27 +16,25 @@ import SessionProvider from "@/components/auth/session";
 // Fonts
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 
-// Config
-const GetMetaConfig = MetaConfig();
-
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: {
-    default: GetMetaConfig.title,
-    template: `%s | ${GetMetaConfig.title}`
+    default: MetaConfig.title,
+    template: `%s | ${MetaConfig.title}`
   },
-  icons: {
-    icon: "/logo.svg"
-  },
-  description: GetMetaConfig.description,
+  description: MetaConfig.description,
+  icons: [
+    "/logo.svg",
+    "/logo.png"
+  ],
   openGraph: {
     type: "website",
     url: "https://sysapp.org",
     title: {
-      default: GetMetaConfig.title,
-      template: `%s | ${GetMetaConfig.title}`
+      default: MetaConfig.title,
+      template: `%s | ${MetaConfig.title}`
     },
-    description: GetMetaConfig.description,
-    siteName: GetMetaConfig.title,
+    description: MetaConfig.description,
+    siteName: MetaConfig.title,
     images: [
       {
         url: "https://sysapp.org/og.png"
@@ -45,32 +43,35 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={(roboto.className)}>
+      <body className={`${roboto.className} antialiased`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
           >
-            <main className="flex flex-col min-w-screen min-h-screen">
+            <div className="flex flex-col min-w-screen min-h-screen">
               <AlertCore />
               <NavBar />
-              <div className="flex flex-col flex-1">
+              <main className="flex flex-col flex-1">
                 {children}
-              </div>
+              </main>
               <Footer />
-            </main>
+            </div>
           </ThemeProvider>
         </SessionProvider>
       </body>
     </html>
   );
 }
+
+export { metadata };
+export default RootLayout;

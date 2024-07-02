@@ -1,20 +1,21 @@
 "use client"
 
-import Link from "next/link";
-import { ModeToggle, ModeToggleSec } from "./theme-provider";
-import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
+// Import (External)
+import { useRouter, usePathname } from "next/navigation";
 import { HeartHandshake, Menu } from "lucide-react";
-import { NavConfig } from "@/config/site";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { Logo } from "./logo";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { Admin } from "./auth/admin";
-import { useEffect, useState } from "react";
-import NavLink from "@/types/NavLink";
+import { useState } from "react";
 
-function Donate() {
+// Import (Internal)
+import { NavLinks } from "@/config/navbar.config";
+import { ModeToggle } from "@/components/theme-provider";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { LogoWithText } from "@/components/logo/default";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import { CLink } from "@/components/ui/CLink";
+import { Admin } from "@/components/auth/admin";
+
+const Donate = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -22,9 +23,9 @@ function Donate() {
                     <HeartHandshake className="w-[1.2rem] h-[1.rem]" />
                 </Button>
             </DialogTrigger>
-            <DialogContent>
-                <DialogTitle>
-
+            <DialogContent className="w-[90%] h-[80%]">
+                <DialogTitle className="font-bold">
+                    Donate
                 </DialogTitle>
             </DialogContent>
         </Dialog>
@@ -32,41 +33,41 @@ function Donate() {
 }
 
 
-function NavBar() {
-    const [NavLinks, setNavLinks] = useState<NavLink[]>([]);
+const NavBar = () => {
+    const router = useRouter();
     const pathname = usePathname();
 
-    useEffect(() => {
-        const fetchNavLinks = async () => {
-            try {
-                const links = await NavConfig();
-                setNavLinks(links);
-            } catch (error) {
-                console.error('Error fetching navigation links:', error);
-            }
-        };
+    const [isSheetOpen, setIsSheetOpen] = useState(false);
 
-        fetchNavLinks();
-    }, [])
+    const handleLinkClick = (href: string, useRouter: boolean) => {
+        if (useRouter) {
+            router.push(href);
+        }
+        setIsSheetOpen(false);
+    };
 
     return (
-        <header className="sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 border-b backdrop-blur-lg grid place-items-center">
+        <header className="sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 border-b backdrop-blur-[5px] grid place-items-center">
             <nav className="flex justify-between w-[97.5%]">
-                <div className="flex max-h-8 space-x-8">
+                <div className="flex max-h-8 space-x-12">
                     <div className="flex justify-center items-center space-x-2 text-xl">
-                        <Link href="/" className="m-0 p-0">
-                            <Logo width={32} height={32} />
-                        </Link>
-                        {/* <svg height="32" role="separator" viewBox="0 0 32 32" width="32">
-                            <path d="M22 5L9 28" stroke="hsl(var(--accent))" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <p>{}</p> */}
-
+                        <div onClick={() => router.push("/")} className="m-0 p-0 cursor-pointer flex justify-start items-center gap-2">
+                            <LogoWithText width={32} height={32} />
+                        </div>
                     </div>
                     <div className="hidden md:flex items-center justify-end text-sm space-x-8">
                         {NavLinks.map((link, idx) => {
+
+                            if (!link.useRouter) {
+                                return (
+                                    <CLink key={idx} href={link.href} className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"}`} isExternal >{link.label}</CLink>
+                                )
+                            }
+
                             return (
-                                <Link className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-colors hover:text-primary"}`} key={idx} href={link.href}>{link.label}</Link>
+                                <Button onClick={() => router.push(link.href)} key={idx} variant="link" className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"} p-0`} >
+                                    {link.label}
+                                </Button>
                             )
                         })}
                     </div>
@@ -76,50 +77,57 @@ function NavBar() {
                     <li><ModeToggle /></li>
                     <li><Admin mobile={false} /></li>
                 </ul>
-                <Sheet>
+                <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
                         <Button className="block md:hidden" variant="ghost" size="sm" >
                             <Menu />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent>
+                    <SheetContent className="flex flex-col">
                         <SheetHeader>
                             <SheetTitle className="flex items-center">
                                 <span className="font-bold text-center align-middle">
                                     SyS App
                                 </span>
-                                {/* <svg height="32" role="separator" viewBox="0 0 32 32" width="32">
-                                    <path d="M22 5L9 28" stroke="hsl(var(--muted))" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Test</span> */}
                             </SheetTitle>
                             <SheetDescription>
 
                             </SheetDescription>
                         </SheetHeader>
-                        <div className="flex flex-col m-8">
-                            {/* Links */}
+                        <div className="flex flex-col space-y-4">
                             {NavLinks.map((link, idx) => {
+                                if (!link.useRouter) {
+                                    return (
+                                        <div className="px-4 py-2 border-b-[1px]" key={idx} onClick={() => handleLinkClick(link.href, link.useRouter)}>
+                                            <CLink href={link.href} className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"}`} isExternal >{link.label}</CLink>
+                                        </div>
+                                    )
+                                }
+
                                 return (
-                                    <div key={idx} className="py-4 border-b font-sans">
-                                        <Link className={`mx-4 text-sm ${pathname === link.href ? "underline-offset-4 underline" : "font-normal"}`} href={link.href}>{link.label}</Link>
+                                    <div className="px-4 py-2 border-b-[1px]" key={idx} onClick={() => handleLinkClick(link.href, link.useRouter)}>
+                                        <Button onClick={() => router.push(link.href)} key={idx} variant="link" className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"} p-0`} >
+                                            {link.label}
+                                        </Button>
                                     </div>
                                 )
                             })}
-
-                            {/* Social links & Buttons */}
-                            <div className="mt-4 space-y-2">
-                                <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
-                                    <span className="text-sm">Appearance</span>
-                                    <ModeToggle />
-                                </div>
-                                <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
-                                    <span className="text-sm">Donate</span>
-                                    <Donate />
-                                </div>
-                                <Admin mobile={true} />
-                            </div>
                         </div>
+                        <div className="flex-1" />
+                        {/* Social links & Buttons */}
+                        <div className="mt-4 space-y-2">
+                            <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
+                                <span className="text-sm">Appearance</span>
+                                <ModeToggle />
+                            </div>
+                            <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
+                                <span className="text-sm">Donate</span>
+                                <Donate />
+                            </div>
+                            {/* Not implemented */}
+                            <Admin mobile={true} />
+                        </div>
+                        <br className="my-2" />
                     </SheetContent>
                 </Sheet>
             </nav>

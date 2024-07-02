@@ -1,29 +1,33 @@
-"use client"
+// Dashboard page
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { GetServerSideProps, Metadata } from "next";
-import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { BaseErrorComponent, BaseErrorComponentContent, BaseErrorComponentDescription, BaseErrorComponentTitle } from "@/components/base/errors";
+import { SignInButton } from "@/components/buttons";
+import { auth } from "@/config/auth";
 
-export default function Page() {
-    const { data: session, status } = useSession();
-    const router = useRouter();
-
-    if (status === "loading") {
-        return (
-            <Skeleton className="flex-1" />
-        )
-    }
+const dashboard = async () => {
+    const session = await auth();
 
     if (!session) {
-        router.push('/api/auth/signin');
-        return null;
+        return (
+            <BaseErrorComponent>
+                <BaseErrorComponentTitle>
+                    Dashboard
+                </BaseErrorComponentTitle>
+                <BaseErrorComponentDescription>
+                    You cannot access this page.
+                </BaseErrorComponentDescription>
+                <BaseErrorComponentContent>
+                    <SignInButton />
+                </BaseErrorComponentContent>
+            </BaseErrorComponent>
+        )
     }
 
     return (
         <>
-            Dashboard
-            {session.user?.name}
+            Hi {session.user?.name}
         </>
     )
 }
+
+export default dashboard;

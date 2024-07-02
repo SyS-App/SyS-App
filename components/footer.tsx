@@ -1,66 +1,72 @@
-import { FooterConfig } from "@/config/site";
-import Link from "next/link";
-import { GithubLogo, LogoWithText, XLogo } from "./logo";
+import { FooterConfig, FooterConfigItems } from "@/config/site";
+import { CLink } from "@/components/ui/CLink";
+import { LogoWithText } from "@/components/logo/default";
+import { GithubLogo } from "@/components/logo/github";
+import { SocialProps } from "@/types/social";
+import { DiscordLogo } from "./logo/discord";
 
 interface ReverseProps {
     reverse: Boolean
 }
 
-function SocialLinks({ reverse }: ReverseProps) {
-    if (!reverse) {
-        return (
-            <div className="md:flex hidden items-center space-x-2">
-                <Link href="https://github.com/SyS-App/SyS-App">
-                    <GithubLogo width={17.5} height={17.5} />
-                </Link>
-                <Link href="">
-                    <XLogo width={17.5} height={17.5} />
-                </Link>
-            </div>
-        )
+const SocialList: SocialProps[] = [
+    {
+        image: <GithubLogo width={17.5} height={17.5} />,
+        url: "https://github.com/SyS-App/SyS-App"
+    },
+    {
+        image: <DiscordLogo width={17.5} height={17.5} />,
+        url: "https://discord.gg/KMtzeUQzbm"
     }
+]
 
+const SocialLinks = ({ reverse }: ReverseProps) => {
     return (
-        <div className="md:hidden flex items-center space-x-2">
-            <Link href="https://github.com/SyS-App/SyS-App">
-                <GithubLogo width={17.5} height={17.5} />
-            </Link>
-            <Link href="">
-                <XLogo width={17.5} height={17.5} />
-            </Link>
+        <div className={`${!reverse ? "md:flex hidden items-center space-x-2" : "md:hidden flex items-center space-x-2"}`}>
+            {SocialList.map((social, idx) => (
+                <CLink href={social.url} key={idx}>
+                    {social.image}
+                </CLink>
+            ))}
         </div>
     )
 }
 
-function Footer() {
+const Footer = () => {
     // Get current year
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="z-40 w-full p-4 border-t bg-background flex flex-col">
-            <div className="w-full block md:grid grid-cols-5 p-4 gap-8">
+        <footer className="z-30 w-full p-4 border-t bg-background flex flex-col space-y-8">
+            <div className="w-full block md:grid grid-cols-4 p-4 gap-8 justify-start items-start">
                 <section className="flex justify-between items-center md:justify-start md:items-start md:flex-col min-h-[64px]">
                     <LogoWithText width={30} height={30} />
                     <SocialLinks reverse={true} />
                 </section>
-                {FooterConfig.sections.map((section, idx) => {
-                    return (
-                        <section className="flex flex-col min-h-[64px]" id={section.id} key={idx}>
-                            <div>
-                                <span className="text-sm font-semibold">{section.label}</span>
-                            </div>
-                            <div className="flex-1">
-
-                            </div>
-                        </section>
-                    )
-                })}
+                {FooterConfig.map((section) => (
+                    <section className="flex flex-col min-h-[64px] mb-8 md:mb-0 space-y-4 text-sm" id={section.id} key={section.id}>
+                        <span className="text-primary font-[500]">{section.label}</span>
+                        <div className="flex-1 flex flex-col space-y-2">
+                            {FooterConfigItems.map((item, idx) => {
+                                if (item.to === section.id) {
+                                    return (
+                                        <CLink href={item.href} key={idx} isExternal className="text-muted-foreground transition-colors hover:text-primary">
+                                            {item.label}
+                                        </CLink>
+                                    )
+                                }
+                                return
+                            })}
+                        </div>
+                    </section>
+                )
+                )}
             </div>
             {/* Copyright & Social links */}
             <div className="flex justify-center items-center md:justify-between">
-                <p className="font-sans text-balance text-sm leading-loose text-muted-foreground text-center md:text-left underline-offset-4">
-                    &copy; {currentYear} <Link href="https://github.com/Runkang10" className="underline">Runkang Chen</Link>, <span className="font-semibold">MIT License</span>.
-                </p>
+                <span className="font-sans text-balance text-sm leading-loose text-muted-foreground text-center md:text-left underline-offset-4">
+                    <span>&copy; {currentYear} SyS App. This site is distributed under the MIT license.</span>
+                </span>
                 <SocialLinks reverse={false} />
             </div>
         </footer>

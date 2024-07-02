@@ -1,27 +1,24 @@
-
-import * as React from "react"
-
-import { Metadata } from "next";
-import { TakeMeHomeButton } from "@/components/buttons";
+// Docs page
 import { BaseErrorComponent, BaseErrorComponentContent, BaseErrorComponentDescription, BaseErrorComponentTitle } from "@/components/base/errors";
+import { TakeMeHomeButton } from "@/components/buttons";
+import { Metadata } from "next";
 
-export const metadata: Metadata = {
-    title: "404",
-    description: "Page not found.",
-    openGraph: {
-        description: "Page not found."
-    }
+
+const metadata: Metadata = {
+    title: "Docs",
+    description: "Find SyS App documentation here."
 }
 
-function E404() {
+
+const Page = () => {
 
     return (
         <BaseErrorComponent>
-            <BaseErrorComponentTitle titleSizePX={64}>
-                404
+            <BaseErrorComponentTitle>
+                Documentation
             </BaseErrorComponentTitle>
             <BaseErrorComponentDescription>
-                Page not found.
+                This page is temporary unavailable. Sorry for the inconvenience.
             </BaseErrorComponentDescription>
             <BaseErrorComponentContent>
                 <TakeMeHomeButton />
@@ -30,4 +27,6 @@ function E404() {
     )
 }
 
-export default E404;
+
+export { metadata };
+export default Page;

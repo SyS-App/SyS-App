@@ -1,11 +1,12 @@
+"use client"
+
 // Admin.tsx
 import { useEffect, useState } from "react";
 import { LogOut, Settings2, User } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { Badge } from "../ui/badge";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface AdminProps {
     status?: boolean;
@@ -74,12 +75,9 @@ function Admin({ status = false, mobile }: AdminProps) {
 
     if (mobile) {
         return (
-            <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
+            <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between flex-row items-center">
                 {mobile && <span className="text-sm">
                     My account
-                    {!session && <Badge className="ml-1" >
-                        For admin only
-                    </Badge>}
                 </span>}
                 {UserItem()}
             </div>

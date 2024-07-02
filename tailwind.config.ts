@@ -75,6 +75,10 @@ const config = {
       fontFamily: {
         sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
         mono: ['Source Code Pro', 'ui-monospace', 'SFMono-Regular'],
+      },
+      fontSize: {
+        "32": "32px",
+        "64": "64px",
       }
     },
   },

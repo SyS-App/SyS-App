@@ -1,0 +1,33 @@
+{
+    "sections": [
+        {
+            "label": "Resources",
+            "id": "resources"
+        },
+        {
+            "label": "Network",
+            "id": "network"
+        },
+        {
+            "label": "Community",
+            "id": "community"
+        }
+    ],
+    "items": [
+        {
+            "to": "resources",
+            "label": "Github",
+            "href": "https://github.com/SyS-App"
+        },
+        {
+            "to": "network",
+            "label": "OpenCollective",
+            "href": "https://opencollective.com/sys-app"
+        },
+        {
+            "to": "community",
+            "label": "Discord",
+            "href": "https://discord.gg/KMtzeUQzbm"
+        }
+    ]
+}
