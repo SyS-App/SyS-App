@@ -17,7 +17,7 @@ function E404() {
 
     return (
         <BaseErrorComponent>
-            <BaseErrorComponentTitle titleSizePX={64}>
+            <BaseErrorComponentTitle>
                 404
             </BaseErrorComponentTitle>
             <BaseErrorComponentDescription>

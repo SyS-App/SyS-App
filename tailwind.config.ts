@@ -78,7 +78,7 @@ const config = {
       },
       fontSize: {
         "32": "32px",
-        "64": "64px",
+        "title": "48px"
       }
     },
   },

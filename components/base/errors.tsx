@@ -7,7 +7,7 @@ import { title } from "process";
 
 const BaseErrorComponent: React.FC<BaseErrorComponentProps> = ({ children, ...props }) => {
     return (
-        <div className="w-full h-[500px] flex justify-center items-center" {...props}>
+        <div className="w-full min-h-[500px] flex justify-center items-center" {...props}>
             <div className="flex flex-col space-y-4 px-8">
                 {children}
             </div>
@@ -15,13 +15,10 @@ const BaseErrorComponent: React.FC<BaseErrorComponentProps> = ({ children, ...pr
     );
 };
 
-const BaseErrorComponentTitle: React.FC<BaseErrorComponentTitleProps> = ({ children, titleSizePX = "32", ...props }) => {
-    const textSizeClass = `text-${titleSizePX}`;
-    const lineHeightClass = `leading-${titleSizePX}`;
-
+const BaseErrorComponentTitle: React.FC<BaseErrorComponentTitleProps> = ({ children, ...props }) => {
     return (
         <span 
-            className={`${textSizeClass} ${lineHeightClass} h-auto text-center font-bold`} 
+            className="text-32 h-auto text-center font-bold" 
             {...props}
         >
             {children}

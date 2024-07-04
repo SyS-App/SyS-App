@@ -47,7 +47,7 @@ const NavBar = () => {
     };
 
     return (
-        <header className="sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 border-b backdrop-blur-[5px] grid place-items-center">
+        <header className="sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 border-b bg-background grid place-items-center">
             <nav className="flex justify-between w-[97.5%]">
                 <div className="flex max-h-8 space-x-12">
                     <div className="flex justify-center items-center space-x-2 text-xl">

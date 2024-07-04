@@ -8,7 +8,6 @@ interface BaseErrorComponentProps extends HTMLAttributes<HTMLDivElement & HTMLSp
 
 interface BaseErrorComponentTitleProps {
     children: ReactNode,
-    titleSizePX?: string | number
 }
 
 export type { BaseErrorComponentProps, BaseErrorComponentTitleProps }

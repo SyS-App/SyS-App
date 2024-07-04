@@ -3,7 +3,8 @@ import { CLink } from "@/components/ui/CLink";
 import { LogoWithText } from "@/components/logo/default";
 import { GithubLogo } from "@/components/logo/github";
 import { SocialProps } from "@/types/social";
-import { DiscordLogo } from "./logo/discord";
+import { DiscordLogo } from "@/components/logo/discord";
+import { currentYear } from "@/lib/base";
 
 interface ReverseProps {
     reverse: Boolean
@@ -33,8 +34,6 @@ const SocialLinks = ({ reverse }: ReverseProps) => {
 }
 
 const Footer = () => {
-    // Get current year
-    const currentYear = new Date().getFullYear();
 
     return (
         <footer className="z-30 w-full p-4 border-t bg-background flex flex-col space-y-8">
