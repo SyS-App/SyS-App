@@ -79,4 +79,11 @@
     min-height: 100vh;
     @apply bg-background text-foreground font-sans;
   }
+
+  .bg-image {
+    background: url("/bg.svg");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
 }
