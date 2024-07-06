@@ -2,11 +2,12 @@
 import { Terminal } from "lucide-react";
 import { BaseHeroComponent } from "@/components/base/hero";
 import { getDevYear } from "@/lib/base";
+import { BasePage } from "@/components/base/base";
 
 const Page = () => {
 
     return (
-        <div className="flex-1 py-0 md:py-[2.5%] flex flex-col justify-center items-center">
+        <BasePage styles="flex-1 py-0 md:py-[2.5%] flex flex-col justify-center items-center">
             <div className="flex flex-col w-full md:w-[95%] relative">
                 {/* Hero content */}
                 <BaseHeroComponent>
@@ -33,7 +34,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </BasePage>
     )
 }
 
