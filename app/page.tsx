@@ -1,17 +1,17 @@
-"use client"
-
+// Home page
+import { Terminal } from "lucide-react";
 import { BaseHeroComponent } from "@/components/base/hero";
 import { getDevYear } from "@/lib/base";
 
 const Page = () => {
 
     return (
-        <div className="flex-1 flex flex-col justify-center items-center py-[5%] px-[5%]">
-            <div className="w-full mx-[5%]">
+        <div className="flex-1 py-0 md:py-[2.5%] flex flex-col justify-center items-center">
+            <div className="flex flex-col w-full md:w-[95%] relative">
                 {/* Hero content */}
                 <BaseHeroComponent>
                     <div className="px-[16%] text-left md:text-center">
-                        <h1 className="text-3xl md:text-title font-bold leading-tight">
+                        <h1 className="text-3xl md:text-title font-bold leading-tight ">
                             Components, Libraries, Projects
                         </h1>
                         <div className="my-4" />
@@ -20,19 +20,15 @@ const Page = () => {
                         </span>
                     </div>
                 </BaseHeroComponent>
-                <br />
                 {/* Main content */}
-                <div className="h-52 border flex flex-col">
-                    {/* Image */}
-                    <div className="border-b h-10">
-
-                    </div>
+                <div className="border flex flex-col">
                     {/* Slogan */}
                     <div className="border-b p-8">
-                        <div>
-                            <p className="text-2xl font-bold text-center">
+                        <div className="flex items-center justify-center space-x-2">
+                            <p className="text-2xl font-semibold">
                                 Find everything you need
                             </p>
+                            <Terminal className="hidden md:block" />
                         </div>
                     </div>
                 </div>

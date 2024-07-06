@@ -9,7 +9,6 @@ import { Roboto } from "next/font/google";
 // Import (Internal)
 import Footer from "@/components/footer";
 import NavBar from "@/components/navbar";
-import AlertCore from "@/components/alert";
 import { MetaConfig } from "@/config/site";
 import SessionProvider from "@/components/auth/session";
 
@@ -59,7 +58,6 @@ const RootLayout = ({
                         enableSystem
                     >
                         <div className="flex flex-col min-w-screen min-h-screen">
-                            <AlertCore />
                             <NavBar />
                             <main className="flex flex-col flex-1">
                                 {children}
