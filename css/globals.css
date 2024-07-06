@@ -55,7 +55,7 @@
     --muted-foreground: 240 5% 64.9%;
 
     --accent: 240 3.7% 15.9%;
-    --accent-foreground: hsl(0 0% 98%);
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -80,8 +80,8 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  .bg-image {
-    background: url("/bg.svg");
+  .homepage_img {
+    background: url("/homepage_img.svg");
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
