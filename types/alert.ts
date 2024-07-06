@@ -2,9 +2,7 @@
 
 interface AlertProps {
     id: string | null,
-    message: string | boolean | null,
-    type: string | null,
-    isClosable: boolean | null,
+    content: string | boolean | null,
     visible: boolean | null,
 }
 

@@ -23,13 +23,8 @@ function AlertCore() {
         <>
             {alerts.map((alert: AlertProps) => (
                 alert.visible && (
-                    <div className={`h-[60px] flex justify-between items-center px-4 text-sm danger ${alert.type}`} key={alert.id}>
-                        <div>{alert.message}</div>
-                        <div>
-                            <div onClick={() => alert.id && changeCurrentAlertVisibility(alert.id)} className="cursor-pointer p-1 hover:bg-primary-foreground rounded-[100%]">
-                                <X className="w-[1.2rem] h-[1.2rem]" />
-                            </div>
-                        </div>
+                    <div className="h-[60px] flex justify-center border items-center px-4 text-sm danger bg-background" key={alert.id}>
+                        <div />
                     </div>
                 )
             ))}

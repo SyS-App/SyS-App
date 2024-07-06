@@ -4,7 +4,7 @@ import { BaseErrorComponent, BaseErrorComponentContent, BaseErrorComponentDescri
 import { SignInButton } from "@/components/buttons";
 import { auth } from "@/config/auth";
 
-const dashboard = async () => {
+const Page = async () => {
     const session = await auth();
 
     if (!session) {
@@ -30,4 +30,4 @@ const dashboard = async () => {
     )
 }
 
-export default dashboard;
+export default Page;
