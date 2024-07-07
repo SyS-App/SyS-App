@@ -3,7 +3,7 @@
 // Import (External)
 import { useRouter, usePathname } from "next/navigation";
 import { HeartHandshake, Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Import (Internal)
 import { NavLinks } from "@/config/navbar.config";
@@ -34,10 +34,33 @@ const Donate = () => {
 
 
 const NavBar = () => {
+    // Initialize router
     const router = useRouter();
+    // Initialize pathname
     const pathname = usePathname();
 
+    // useState for navbar in mobile devices.
     const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+    // useState and useEffect for navbar when scrolling in to the bottom of page.
+    const [InSticky, setInSticky] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            if (offset > 0) {
+                setInSticky(true);
+            } else {
+                setInSticky(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [])
 
     const handleLinkClick = (href: string, useRouter: boolean) => {
         if (useRouter) {
@@ -47,7 +70,7 @@ const NavBar = () => {
     };
 
     return (
-        <header className="sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 backdrop-blur-md grid place-items-center">
+        <header className={`sticky top-0 left-0 z-40 font-sans w-full h-[60px] px-2 ${InSticky && "border-b"} bg-background grid place-items-center`}>
             <nav className="flex justify-between w-[97.5%]">
                 <div className="flex max-h-8 space-x-12">
                     <div className="flex justify-center items-center space-x-2 text-xl">
@@ -113,7 +136,6 @@ const NavBar = () => {
                                 )
                             })}
                         </div>
-                        <div className="flex-1" />
                         {/* Social links & Buttons */}
                         <div className="mt-4 space-y-2">
                             <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
