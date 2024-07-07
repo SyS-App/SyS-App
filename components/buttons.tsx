@@ -1,9 +1,10 @@
-"use client"
-
 // Custom buttons
+"use client"
+// Import (Internal)
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+// Import (External)
+import { Button } from "@/components/ui/button";
 
 const TakeMeHomeButton = ({ to="/" }) => {
     const router = useRouter();
