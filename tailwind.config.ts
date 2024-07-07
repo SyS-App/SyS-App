@@ -3,10 +3,10 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -71,14 +71,19 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        scrollBackground: {
+          "0%": { backgroundPosition: "100% top" },
+          "100%": { backgroundPosition: "0% bottom" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        scrollBackground: "scrollBackground 15s linear infinite",
       },
       fontFamily: {
-        sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
-        mono: ['Source Code Pro', 'ui-monospace', 'SFMono-Regular'],
+        sans: ["Roboto", "ui-sans-serif", "system-ui"],
+        mono: ["Source Code Pro", "ui-monospace", "SFMono-Regular"],
       },
       fontSize: {
         "32": "32px",
@@ -89,4 +94,4 @@ const config = {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
-export default config
+export default config;

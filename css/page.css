@@ -1,0 +1,8 @@
+/* Page CSS */
+.sys-text {
+    background: linear-gradient(-81deg, #072941 0%, #095287 50%, #268FDB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}

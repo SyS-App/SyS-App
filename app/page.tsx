@@ -1,17 +1,19 @@
 // Home page
+import "@/css/page.css";
 import { Terminal } from "lucide-react";
 import { BaseHeroComponent } from "@/components/base/hero";
 import { getDevYear } from "@/lib/base";
+import { BasePage } from "@/components/base/base";
 
 const Page = () => {
 
     return (
-        <div className="flex-1 py-0 md:py-[2.5%] flex flex-col justify-center items-center">
-            <div className="flex flex-col w-full md:w-[95%] relative">
+        <BasePage styles="flex-1 flex flex-col justify-center items-center">
+            <div className="flex flex-col w-full relative">
                 {/* Hero content */}
                 <BaseHeroComponent>
                     <div className="px-[16%] text-left md:text-center">
-                        <h1 className="text-3xl md:text-title font-bold leading-tight ">
+                        <h1 className="text-3xl md:text-title font-bold leading-tight sys-text">
                             Components, Libraries, Projects
                         </h1>
                         <div className="my-4" />
@@ -21,9 +23,9 @@ const Page = () => {
                     </div>
                 </BaseHeroComponent>
                 {/* Main content */}
-                <div className="border flex flex-col">
+                <div className="flex flex-col">
                     {/* Slogan */}
-                    <div className="border-b p-8">
+                    <div className="p-8">
                         <div className="flex items-center justify-center space-x-2">
                             <p className="text-2xl font-semibold">
                                 Find everything you need
@@ -33,7 +35,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </BasePage>
     )
 }
 
