@@ -1,3 +1,5 @@
+// Footer component
+// Import (Internal)
 import { FooterConfig, FooterConfigItems } from "@/config/site";
 import { CLink } from "@/components/ui/CLink";
 import { LogoWithText } from "@/components/logo/default";
@@ -10,6 +12,7 @@ interface ReverseProps {
     reverse: Boolean
 }
 
+// All social links (External)
 const SocialList: SocialProps[] = [
     {
         image: <GithubLogo width={17.5} height={17.5} />,
@@ -36,12 +39,15 @@ const SocialLinks = ({ reverse }: ReverseProps) => {
 const Footer = () => {
 
     return (
+        // Footer
         <footer className="z-30 w-full p-4 border-t bg-background flex flex-col space-y-8">
             <div className="w-full block md:grid grid-cols-4 p-4 gap-8 justify-start items-start">
+                {/* Logo with text in footer */}
                 <section className="flex justify-between items-center md:justify-start md:items-start md:flex-col min-h-[64px]">
                     <LogoWithText width={30} height={30} />
                     <SocialLinks reverse={true} />
                 </section>
+                {/* Footer sections with links */}
                 {FooterConfig.map((section) => (
                     <section className="flex flex-col min-h-[64px] mb-8 md:mb-0 space-y-4 text-sm" id={section.id} key={section.id}>
                         <span className="text-primary font-[500]">{section.label}</span>
