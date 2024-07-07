@@ -1,7 +1,10 @@
-import NextAuth from "next-auth";
+// Auth config
+// Import (Internal)
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import authConfig from "@/config/auth.config";
-import { firestore } from "./firebase";
+import { firestore } from "@/config/firebase";
+// Import (External)
+import NextAuth from "next-auth";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
     adapter: FirestoreAdapter(firestore),
