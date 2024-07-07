@@ -1,3 +1,4 @@
+// Convert Markdown to html (used on blogs)
 import { remark } from "remark";
 import html from "remark-html";
 
