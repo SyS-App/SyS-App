@@ -1,3 +1,4 @@
+// Firebase config
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
@@ -30,8 +31,12 @@ if (!getApps().length) {
   app = getApps()[0];
 }
 
+// Firestore
 const firestore = getFirestore(app);
+// Storage (Out of working, will be activated after releasing other projects)
 const storage = getStorage(app);
+
+// Realtime database (Out of working, will be activated after releasing other projects)
 const realtime_database = getDatabase(app);
 
 export { app, firestore, storage, realtime_database }

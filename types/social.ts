@@ -1,4 +1,4 @@
-// NavBar types
+// For social links props
 
 import { ReactNode } from "react";
 

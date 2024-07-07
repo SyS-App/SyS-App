@@ -1,3 +1,4 @@
+// Bug report component (Not implemented)
 import { BugReportProps } from "@/types/bug";
 
 const BugReport = ({ type="nav" }: BugReportProps) => {

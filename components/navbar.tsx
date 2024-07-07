@@ -2,7 +2,7 @@
 
 // Import (External)
 import { useRouter, usePathname } from "next/navigation";
-import { HeartHandshake, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
 // Import (Internal)
@@ -11,26 +11,27 @@ import { ModeToggle } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { LogoWithText } from "@/components/logo/default";
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+// import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import { CLink } from "@/components/ui/CLink";
 import { Admin } from "@/components/auth/admin";
 
-const Donate = () => {
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="ghost" size="sm">
-                    <HeartHandshake className="w-[1.2rem] h-[1.rem]" />
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="w-[90%] h-[80%]">
-                <DialogTitle className="font-bold">
-                    Donate
-                </DialogTitle>
-            </DialogContent>
-        </Dialog>
-    )
-}
+// Not implemented
+// const Donate = () => {
+//     return (
+//         <Dialog>
+//             <DialogTrigger asChild>
+//                 <Button variant="ghost" size="sm">
+//                     <HeartHandshake className="w-[1.2rem] h-[1.rem]" />
+//                 </Button>
+//             </DialogTrigger>
+//             <DialogContent className="w-[90%] h-[80%]">
+//                 <DialogTitle className="font-bold">
+//                     Donate
+//                 </DialogTitle>
+//             </DialogContent>
+//         </Dialog>
+//     )
+// }
 
 
 const NavBar = () => {
@@ -79,14 +80,15 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className="hidden md:flex items-center justify-end text-sm space-x-8">
+                        {/* Get all links */}
                         {NavLinks.map((link, idx) => {
-
+                            // For external links (Eg. https://example.com)
                             if (!link.useRouter) {
                                 return (
                                     <CLink key={idx} href={link.href} className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"}`} isExternal >{link.label}</CLink>
                                 )
                             }
-
+                            // For internal links (Eg. /, /docs, /blog)
                             return (
                                 <Button onClick={() => router.push(link.href)} key={idx} variant="link" className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"} p-0`} >
                                     {link.label}
@@ -96,10 +98,11 @@ const NavBar = () => {
                     </div>
                 </div>
                 <ul className="hidden md:flex space-x-2">
-                    <li><Donate /></li>
+                    {/* <li><Donate /></li> */}
                     <li><ModeToggle /></li>
                     <li><Admin mobile={false} /></li>
                 </ul>
+                {/* Mobile navbar using Sheet */}
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
                         <Button className="block md:hidden" variant="ghost" size="sm" >
@@ -117,10 +120,13 @@ const NavBar = () => {
 
                             </SheetDescription>
                         </SheetHeader>
+                        {/* Main */}
                         <div className="flex flex-col space-y-4">
+                            {/* Get all links */}
                             {NavLinks.map((link, idx) => {
                                 if (!link.useRouter) {
                                     return (
+                                        // For external links (Eg. https://example.com)
                                         <div className="px-4 py-2 border-b-[1px]" key={idx} onClick={() => handleLinkClick(link.href, link.useRouter)}>
                                             <CLink href={link.href} className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"}`} isExternal >{link.label}</CLink>
                                         </div>
@@ -128,6 +134,7 @@ const NavBar = () => {
                                 }
 
                                 return (
+                                    // For internal links (Eg. /, /docs, /blog)
                                     <div className="px-4 py-2 border-b-[1px]" key={idx} onClick={() => handleLinkClick(link.href, link.useRouter)}>
                                         <Button onClick={() => router.push(link.href)} key={idx} variant="link" className={`${pathname === link.href ? "text-primary" : "text-muted-foreground transition-all hover:text-primary"} p-0`} >
                                             {link.label}
@@ -144,9 +151,9 @@ const NavBar = () => {
                             </div>
                             <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
                                 <span className="text-sm">Donate</span>
-                                <Donate />
+                                {/* <Donate /> */}
                             </div>
-                            {/* Not implemented */}
+                            {/* Admin options */}
                             <Admin mobile={true} />
                         </div>
                         <br className="my-2" />

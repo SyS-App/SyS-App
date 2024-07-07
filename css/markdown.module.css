@@ -1,3 +1,5 @@
+/* For markdown styles */
+
 .markdown {
     @apply text-base leading-relaxed;
 }
