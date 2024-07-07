@@ -149,10 +149,10 @@ const NavBar = () => {
                                 <span className="text-sm">Appearance</span>
                                 <ModeToggle />
                             </div>
-                            <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
+                            {/* <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">
                                 <span className="text-sm">Donate</span>
-                                {/* <Donate /> */}
-                            </div>
+                                <Donate />
+                            </div> */}
                             {/* Admin options */}
                             <Admin mobile={true} />
                         </div>
