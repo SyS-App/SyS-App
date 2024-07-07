@@ -49,9 +49,11 @@ const Footer = () => {
                             {FooterConfigItems.map((item, idx) => {
                                 if (item.to === section.id) {
                                     return (
-                                        <CLink href={item.href} key={idx} isExternal className="text-muted-foreground transition-colors hover:text-primary">
-                                            {item.label}
-                                        </CLink>
+                                        <div key={idx}>
+                                            <CLink href={item.href} isExternal className="text-muted-foreground transition-colors hover:text-primary">
+                                                {item.label}
+                                            </CLink>
+                                        </div>
                                     )
                                 }
                                 return
