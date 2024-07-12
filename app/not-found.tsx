@@ -2,7 +2,6 @@
 import * as React from "react"
 
 import { Metadata } from "next";
-import { TakeMeHomeButton } from "@/components/buttons";
 import AppLayout from "./(app)/layout";
 // import { BaseErrorComponent, BaseErrorComponentContent, BaseErrorComponentDescription, BaseErrorComponentTitle } from "@/components/base/errors";
 
