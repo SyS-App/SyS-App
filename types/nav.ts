@@ -1,10 +1,20 @@
-// Nav types
-import { AnchorHTMLAttributes } from "react";
+import { Icons } from "@/components/icons";
 
-interface NavLinksProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-    label: string,
-    href: string,
-    useRouter: boolean,
+interface NavItem {
+    title: string
+    href?: string
+    disabled?: boolean
+    external?: boolean
+    icon?: keyof typeof Icons
+    label?: string
 }
 
-export type { NavLinksProps };
+interface NavItemWithChildren extends NavItem {
+    items: NavItemWithChildren[]
+}
+
+interface MainNavItem extends NavItem { }
+
+interface SidebarNavItem extends NavItemWithChildren { }
+
+export type { NavItem, NavItemWithChildren, MainNavItem, SidebarNavItem };

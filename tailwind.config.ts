@@ -79,7 +79,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        scrollBackground: "scrollBackground 15s linear infinite",
+        scrollBackground: "scrollBackground 5s linear infinite",
       },
       fontFamily: {
         sans: ["Roboto", "ui-sans-serif", "system-ui"],

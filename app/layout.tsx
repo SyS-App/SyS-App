@@ -7,10 +7,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
 // Import (Internal)
-import Footer from "@/components/footer";
-import NavBar from "@/components/navbar";
 import { MetaConfig } from "@/config/site";
-import SessionProvider from "@/components/auth/session";
 
 // Fonts
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
@@ -25,6 +22,22 @@ const metadata: Metadata = {
         "/logo.svg",
         "/logo.png"
     ],
+    keywords: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Open source",
+        "Components",
+        "Libraries",
+        "Projects"
+    ],
+    authors: [
+        {
+            name: "Runkang Chen",
+            url: "https://github.com/Runkang10"
+        }
+    ],
+    creator: "Runkang Chen",
     openGraph: {
         type: "website",
         url: "https://sysapp.org",
@@ -42,30 +55,26 @@ const metadata: Metadata = {
     }
 };
 
-const RootLayout = ({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) => {
-
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${roboto.className} antialiased`}>
-                <SessionProvider>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="dark"
-                        enableSystem
-                    >
-                        <div className="flex flex-col min-w-screen min-h-screen">
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                >
+                    {/* <div className="flex flex-col min-w-screen min-h-screen">
                             <NavBar />
                             <main className="flex flex-col flex-1">
                                 {children}
                             </main>
                             <Footer />
-                        </div>
-                    </ThemeProvider>
-                </SessionProvider>
+                        </div> */}
+                    <div className="flex flex-col min-h-screen bg-background">
+                        {children}
+                    </div>
+                </ThemeProvider>
             </body>
         </html>
     );

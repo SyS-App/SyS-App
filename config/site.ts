@@ -1,15 +1,6 @@
-// Website configs
-import FooterData from "@/footer.json";
-import { Footer, FooterItem } from "@/types/footer";
-
-// Default metadata
 const MetaConfig = {
     title: "SyS App",
-    description: "Developed and maintained since age 14."
+    description: "Developed and maintained since age 14. Just created for passion."
 }
 
-// Footer items loaded from json files
-const FooterConfig: Footer[] = FooterData.sections;
-const FooterConfigItems: FooterItem[] = FooterData.items;
-
-export { MetaConfig, FooterConfig, FooterConfigItems }
+export { MetaConfig }

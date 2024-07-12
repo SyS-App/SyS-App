@@ -9,7 +9,7 @@ const CLink: React.FC<CLinkProps & LinkProps> = ({ children, href, isExternal = 
 
     if (isExternal) {
         return (
-            <Link href={href} {...linkProps} rel="noopener noreferrer" target="_blank">
+            <Link href={href} {...linkProps} rel="noopener noreferrer" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <span className="inline-flex items-center gap-1">
                     {children}
                     {ExternalIcon}
@@ -19,7 +19,7 @@ const CLink: React.FC<CLinkProps & LinkProps> = ({ children, href, isExternal = 
     }
 
     return (
-        <Link href={href} {...linkProps}>
+        <Link href={href} {...linkProps} className="text-muted-foreground hover:text-primary transition-colors">
             <span className="inline-flex items-center gap-1">
                 {children}
                 {ExternalIcon}

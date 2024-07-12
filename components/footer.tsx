@@ -1,12 +1,11 @@
 // Footer component
 // Import (Internal)
-import { FooterConfig, FooterConfigItems } from "@/config/site";
+import { FooterConfig, FooterConfigItems } from "@/config/footer";
 import { CLink } from "@/components/ui/CLink";
 import { LogoWithText } from "@/components/logo/default";
 import { GithubLogo } from "@/components/logo/github";
 import { SocialProps } from "@/types/social";
 import { DiscordLogo } from "@/components/logo/discord";
-import { currentYear } from "@/lib/base";
 
 interface ReverseProps {
     reverse: Boolean
@@ -16,7 +15,7 @@ interface ReverseProps {
 const SocialList: SocialProps[] = [
     {
         image: <GithubLogo width={17.5} height={17.5} />,
-        url: "https://github.com/SyS-App/SyS-App"
+        url: "https://github.com/SyS-App/"
     },
     {
         image: <DiscordLogo width={17.5} height={17.5} />,
@@ -72,7 +71,7 @@ const Footer = () => {
             {/* Copyright & Social links */}
             <div className="flex justify-center items-center md:justify-between">
                 <span className="font-sans text-balance text-sm leading-loose text-muted-foreground text-center md:text-left underline-offset-4">
-                    <span>&copy; {currentYear} SyS App. This site is distributed under the MIT license.</span>
+                    <span>Build by <CLink href="https://github.com/Runkang10" isExternal>Runkang10</CLink>. The source code is available on <CLink href="https://github.com/SyS-App/sys-app" isExternal>Github</CLink>.</span>
                 </span>
                 <SocialLinks reverse={false} />
             </div>
