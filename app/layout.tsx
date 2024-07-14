@@ -1,14 +1,16 @@
 // CSS
-import { ThemeProvider } from "@/components/theme-provider";
 import "@/css/globals.css";
 
 // Import (External)
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import (Internal)
 import { MetaConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -71,6 +73,8 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                             {children}
                         </main>
                         <Footer />
+                        <Analytics />
+                        <SpeedInsights />
                     </div>
                 </ThemeProvider>
             </body>
