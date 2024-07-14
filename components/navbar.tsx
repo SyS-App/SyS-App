@@ -1,8 +1,8 @@
 "use client"
 
 // Import (External)
-import { useRouter, usePathname } from "next/navigation";
-import { BookOpen, Component, Menu, Newspaper, Package, ReplaceAll } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { BookOpen, Component, FolderCode, Menu, Newspaper, Package, ReplaceAll } from "lucide-react";
 import { useState } from "react";
 
 // Import (Internal)
@@ -12,48 +12,69 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { LogoWithText } from "./logo/default";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
 import Link from "next/link";
+import { ScrollArea } from "./ui/scroll-area";
 
 
-const Open_source = ({ style }: { style: string }) => (
-    <ul className={style}>
-        <li className="flex flex-col w-full">
-            <Link
-                href="/components"
-                className="p-2 rounded-md flex items-center space-x-4 cursor-pointer hover:bg-secondary transition-all"
-            >
-                <div className="hidden md:block p-3 bg-primary-foreground border rounded-sm">
-                    <Component className="w-5 h-5" />
-                </div>
-                <div>
-                    <p className="font-bold">
-                        Components
-                    </p>
-                    <p className="text-xs">
-                        Next.js + TypeScript components.
-                    </p>
-                </div>
-            </Link>
-        </li>
-        <li className="flex flex-col w-full">
-            <Link
-                href="/libraries"
-                className="p-2 rounded-md flex items-center space-x-4 cursor-pointer hover:bg-secondary transition-all"
-            >
-                <div className="hidden md:block p-3 bg-primary-foreground border rounded-sm">
-                    <Package className="w-5 h-5" />
-                </div>
-                <div>
-                    <p className="font-bold">
-                        Libraries
-                    </p>
-                    <p className="text-xs">
-                        Rust, Python and TypeScript tools.
-                    </p>
-                </div>
-            </Link>
-        </li>
-    </ul>
-)
+const Open_source = ({ style }: { style: string }) => {
+    return (
+        <ul className={style}>
+            <li className="flex flex-col w-full">
+                <Link
+                    href="/components"
+                    className="p-2 rounded-md flex items-center space-x-4 cursor-pointer hover:bg-secondary transition-all"
+                >
+                    <div className="hidden md:block p-3 bg-primary-foreground border rounded-sm">
+                        <Component className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="font-bold">
+                            Components
+                        </p>
+                        <p className="text-xs">
+                            Next.js + TypeScript components.
+                        </p>
+                    </div>
+                </Link>
+            </li>
+            <li className="flex flex-col w-full">
+                <Link
+                    href="/libraries"
+                    className="p-2 rounded-md flex items-center space-x-4 cursor-pointer hover:bg-secondary transition-all"
+                >
+                    <div className="hidden md:block p-3 bg-primary-foreground border rounded-sm">
+                        <Package className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="font-bold">
+                            Libraries
+                        </p>
+                        <p className="text-xs">
+                            Rust, Python and TypeScript tools.
+                        </p>
+                    </div>
+                </Link>
+            </li>
+            <li className="flex flex-col w-full">
+                <Link
+                    href="/others"
+                    className="p-2 rounded-md flex items-center space-x-4 cursor-pointer hover:bg-secondary transition-all"
+                >
+                    <div className="hidden md:block p-3 bg-primary-foreground border rounded-sm">
+                        <FolderCode className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="font-bold">
+                            Others
+                        </p>
+                        <p className="text-xs">
+                            Other open source projects.
+                        </p>
+                    </div>
+                </Link>
+            </li>
+        </ul>
+    )
+}
 
 const Resources = ({ style }: { style: string }) => (
     <ul className={style}>
@@ -174,20 +195,22 @@ const NavBar = () => {
 
                             </SheetDescription>
                         </SheetHeader>
-                        <div className="flex flex-col space-y-4 text-sm">
-                            <div className="px-4 py-2 flex flex-col space-y-2">
-                                <p className="font-bold">
-                                    Open source
-                                </p>
-                                <Open_source style="space-y-2" />
+                        <ScrollArea>
+                            <div className="flex flex-col space-y-4 text-sm">
+                                <div className="px-4 py-2 flex flex-col space-y-2">
+                                    <p className="font-bold">
+                                        Open source
+                                    </p>
+                                    <Open_source style="space-y-2" />
+                                </div>
+                                <div className="px-4 py-2 flex flex-col space-y-2">
+                                    <p className="font-bold">
+                                        Resources
+                                    </p>
+                                    <Resources style="space-y-2" />
+                                </div>
                             </div>
-                            <div className="px-4 py-2 flex flex-col space-y-2">
-                                <p className="font-bold">
-                                    Resources
-                                </p>
-                                <Resources style="space-y-2" />
-                            </div>
-                        </div>
+                        </ScrollArea>
                         <div className="flex-1" />
                         <div className="mt-4 space-y-2">
                             <div className="px-4 py-2 rounded-lg bg-secondary flex justify-between items-center">

@@ -1,5 +1,5 @@
 // Footer component
-// Import (Internal)
+import Link from "next/link";
 import { FooterConfig, FooterConfigItems } from "@/config/footer";
 import { CLink } from "@/components/ui/CLink";
 import { LogoWithText } from "@/components/logo/default";
@@ -27,9 +27,9 @@ const SocialLinks = ({ reverse }: ReverseProps) => {
     return (
         <div className={`${!reverse ? "md:flex hidden items-center space-x-2" : "md:hidden flex items-center space-x-2"}`}>
             {SocialList.map((social, idx) => (
-                <CLink href={social.url} key={idx}>
+                <Link href={social.url} key={idx} rel="noopener noreferrer" target="_blank">
                     {social.image}
-                </CLink>
+                </Link>
             ))}
         </div>
     )
